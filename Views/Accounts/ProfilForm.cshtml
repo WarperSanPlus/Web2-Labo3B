@@ -1,0 +1,71 @@
+﻿@model MoviesDBManager.Models.User
+
+@{
+    ViewBag.Title = "Profil";
+    bool subscribing = Model.Id == 0;
+    string pageTitle = subscribing ? "Inscription" : "Profil";
+    string formSubmitCaption = subscribing ? "S'inscrire" : "Enregistrer";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="formLayout">
+
+        <fieldset>
+            <div class="legend">Identification</div>
+            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", placeholder = @Html.DisplayNameFor(model => model.FirstName) } })
+            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+            <br />
+            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", placeholder = @Html.DisplayNameFor(model => model.LastName) } })
+            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+        </fieldset>
+        <fieldset>
+            <div class="legend">@Html.DisplayNameFor(model => model.Avatar)</div>
+            @Helper.ImageUploader("Avatar", Model.Avatar, "Cliquez pour choisir votre avatar")
+            @Html.ValidationMessageFor(model => model.Avatar, "", new { @class = "text-danger" })
+        </fieldset>
+        <fieldset>
+            <div class="legend">@Html.DisplayNameFor(model => model.GenderId)</div>
+            @Html.RadioButtonsGroupFor(model => model.GenderId, (SelectList)ViewBag.Genders)
+            @Html.ValidationMessageFor(model => model.GenderId, "", new { @class = "text-danger" })
+        </fieldset>
+
+
+        <fieldset>
+            <div class="legend">@Html.DisplayNameFor(model => model.Email)</div>
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = @Html.DisplayNameFor(model => model.Email) } })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            <br />
+            @Html.EditorFor(model => model.ConfirmEmail, new { htmlAttributes = new { @class = "form-control", placeholder = @Html.DisplayNameFor(model => model.ConfirmEmail) } })
+            @Html.ValidationMessageFor(model => model.ConfirmEmail, "", new { @class = "text-danger" })
+        </fieldset>
+
+        <fieldset>
+            <div style="display:grid; align-items:center; grid-template-columns:auto 80px;">
+                <div class="legend">
+                    @Html.DisplayNameFor(model => model.Password)
+                </div>
+                <div>
+                    @if (!subscribing)
+                    {
+                        <label for="changePassword">Modifier</label>
+                        <input type="checkbox" name="changePassword" id="changePassword" style="margin-top:-5px;" />
+                    }
+                </div>
+            </div>
+            <div style="display:grid; grid-template-columns:auto 0px">
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = @Html.DisplayNameFor(model => model.Password) } })
+                @Helper.Icon("toggleShowPassword", "passwordShowIcon fa-eye-slash", "Affichier le mot de passe")
+            </div>
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            <br />
+            @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control", placeholder = @Html.DisplayNameFor(model => model.ConfirmPassword) } })
+            @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+        </fieldset>
+        <input type="submit" value="@formSubmitCaption" class="btn btn-default" />
+        <hr />
+        <a href="@((string)Session["LastAction"])">Retour</a>
+    </div>
+}
+

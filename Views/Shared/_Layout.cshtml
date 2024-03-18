@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+@{
+    var currentUser = MoviesDBManager.Models.OnlineUsers.GetSessionUser();
+}
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Répertoire de films</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="menu">
+            <div class="menuLeft">
+                <a href="/Home/About">
+                    <img src="/info-icon.png" class="menuIcon" title="Modifier votre profil..." />
+                </a>
+                @if (currentUser != null)
+                {
+                    <a href="/Movies/Index">
+                        <img src="/favicon.ico" class="menuIcon" title="Liste des films" />
+                    </a>
+                    <a href="/Actors/Index">
+                        <img src="/actors_logo.png" class="menuIcon" title="Liste des acteurs" />
+                    </a>
+                    <a href="/Distributors/Index">
+                        <img src="/Distributors_Logo.png" class="menuIcon" title="Liste des distributeurs" />
+                    </a>
+                }
+            </div>
+            @if (currentUser != null)
+            {
+                @Helper.avatarLink(currentUser.Avatar, "/Accounts/Profil")
+                @Helper.IconCmd("Accounts", "Logout", "menu-Icon fa fa-sign-out", "Se déconnecter...")
+            }
+            else
+            {
+                <span>&nbsp;</span>
+                @Helper.IconCmd("Accounts", "Login", "menu-Icon fa fa-sign-in", "Se connecter...")
+            }
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,466 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 380px;
+}
+
+.navbar-inverse .navbar-toggle:hover,
+.navbar-inverse .navbar-toggle:focus {
+    background-color: #777;
+    border-color: #fff
+}
+
+.ui-datepicker {
+    width: 330px;
+    height: auto;
+    margin: 5px auto 0;
+    font: 14pt Arial, sans-serif;
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .5);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .5);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .5);
+}
+
+*::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+* {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+body {
+    height: 100vh;
+    background-color: white;
+    background-size: cover;
+}
+
+.main {
+    height: 80vh;
+    scroll-behavior: smooth;
+    width: auto;
+    overflow: scroll;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+.mainDetails {
+    height: 83vh;
+    scroll-behavior: smooth;
+    width: auto;
+    overflow: scroll;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+.prevent-select {
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+}
+
+.ellipsis {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.hideOverflow {
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.passwordShowIcon {
+    transform: translate(-30px, 3px);
+    cursor: pointer;
+}
+
+.icon {
+    font-size: 25px !important;
+    cursor: pointer;
+    -webkit-text-stroke-width: 0.75px;
+    -webkit-text-stroke-color: #337ab7;
+    -webkit-text-fill-color: #337ab7;
+}
+
+    .icon:hover {
+        -webkit-text-stroke-color: #6dbafc;
+        -webkit-text-fill-color: #6dbafc;
+    }
+
+
+    .icon:active {
+        -webkit-text-stroke-color: #e0f1ff;
+        -webkit-text-fill-color: #e0f1ff;
+    }
+
+.imageUploader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.UploadedImage {
+}
+
+.detailsHeader {
+    display: grid;
+    grid-template-columns: auto 35px 35px;
+    align-items: baseline;
+}
+
+.ActorsContainer {
+    display: grid;
+    grid-gap: 6px;
+    grid-template-columns: repeat(auto-fill, 90px);
+}
+
+.ActorContainer {
+    text-decoration: none;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    font-size: 12px !important;
+    align-items: center;
+    padding: 3px;
+    cursor: pointer;
+}
+
+    .ActorContainer .icon {
+        display: none;
+    }
+
+    .ActorContainer:hover .icon {
+        display: block;
+    }
+
+.MoviesContainer {
+    display: grid;
+    grid-gap: 6px;
+    grid-template-columns: repeat(auto-fill, 122px);
+}
+
+.MovieContainer {
+    text-decoration: none;
+    width: 100px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    font-size: 12px !important;
+    align-items: center;
+    padding: 3px;
+    cursor: pointer;
+}
+
+.DistributorsContainer {
+    display: grid;
+    grid-gap: 6px;
+    grid-template-columns: repeat(auto-fill, 122px);
+}
+
+.DistributorContainer {
+    text-decoration: none;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    font-size: 12px !important;
+    align-items: center;
+    padding: 3px;
+    cursor: pointer;
+}
+
+.MovieContainer .icon {
+    display: none;
+}
+
+.MovieContainer:hover {
+    background-color: aliceblue;
+}
+
+    .MovieContainer:hover .icon {
+        display: block;
+    }
+
+.largeAvatar {
+    width: 380px;
+    height: 500px;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    border: 1px solid #ccc;
+}
+
+.smallAvatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 70px;
+    background-size: cover !important;
+    background-position: top !important;
+    background-repeat: no-repeat !important;
+    border: 1px solid #ccc;
+}
+
+.UserSmallAvatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 35px;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+}
+
+.largePoster {
+    width: 380px;
+    height: 500px;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    border: 1px solid #ccc;
+}
+
+.smallPoster {
+    width: 95px;
+    height: 165px;
+    background-size: cover !important;
+    background-position: top !important;
+    background-repeat: no-repeat !important;
+    border: 1px solid #ccc;
+}
+
+.largeLogo {
+    width: 380px;
+    height: 215px;
+    background-size: contain !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    border: 1px solid #ccc;
+}
+
+.smallLogo {
+    width: 110px;
+    height: 62px;
+    background-size: contain !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    border: 1px solid #ccc;
+}
+
+.MovieDetails-left {
+    display: flex;
+    column-gap: 15px;
+    align-items: start;
+}
+
+.MovieDetailsTitle {
+    font-size: 1.6em;
+    font-weight: bold;
+}
+
+.MovieDetails-right {
+    flex: 3;
+}
+
+@media screen and (max-width: 600px) {
+    .MovieDetails-left {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .MovieDetailsTitle {
+        font-size: 1.4em;
+        font-weight: bold;
+    }
+
+    .MovieDetails-right {
+        margin-top: 15px;
+        display: block;
+        width: 100%;
+    }
+}
+
+.ActorDetails-left {
+    display: flex;
+    column-gap: 15px;
+    align-items: start;
+}
+
+.ActorDetailsName {
+    font-size: 1.6em;
+    font-weight: bold;
+}
+
+.ActorDetails-right {
+    flex: 3;
+}
+
+.detailsSectionTitle {
+    font-size: 1.5em;
+    border-bottom: 1px solid #ccc;
+}
+
+@media screen and (max-width: 480px) {
+    .ActorDetails-left {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .ActorDetailsName {
+        font-size: 1.4em;
+        font-weight: bold;
+    }
+
+    .ActorDetails-right {
+        margin-top: 15px;
+        display: block;
+        width: 100%;
+    }
+}
+
+.DistributorDetails-left {
+    display: flex;
+    column-gap: 15px;
+    align-items: start;
+}
+
+.DistributorName {
+    font-size: 1.6em;
+    font-weight: bold;
+}
+
+.DistributorDetails-right {
+    flex: 3;
+}
+
+@media screen and (max-width: 480px) {
+    .DistributorDetails-left {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .DistributorName {
+        font-size: 1.4em;
+        font-weight: bold;
+    }
+
+    .DistributorDetails-right {
+        margin-top: 15px;
+        display: block;
+        width: 100%;
+    }
+}
+
+.btn-primary {
+    background-color: dodgerblue !important;
+    color: white;
+    text-align: center !important;
+    max-width: 280px !important;
+    text-decoration: none;
+}
+
+.btn-secondary {
+    background-color: green !important;
+    color: white;
+    text-align: center !important;
+    max-width: 280px !important;
+    text-decoration: none;
+}
+
+.btn-cancel {
+    background-color: gray !important;
+    color: white;
+    text-align: center !important;
+    max-width: 280px !important;
+    text-decoration: none;
+}
+
+.btn-danger {
+    background-color: darkRed !important;
+    color: white;
+    text-align: center !important;
+    max-width: 280px !important;
+    text-decoration: none;
+}
+
+fieldset {
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    max-width: 400px !important;
+    border-radius: 6px;
+    padding: 10px;
+    padding-top: 10px;
+    margin-bottom: 10px;
+}
+
+.legend {
+    font-size: 1em;
+    color: dodgerblue !important;
+    padding-bottom: 10px;
+    font-weight: bold;
+}
+
+.formLayout {
+    margin: auto;
+    max-width: 415px;
+}
+
+.uploadImage {
+    max-width: 380px;
+}
+
+.UploadedImage {
+    max-width: 380px;
+}
+
+.radio {
+    margin-left: 20px;
+}
+
+.menuIcon {
+    height: 36px !important;
+    margin-top: 8px;
+    margin-left: 5px;
+}
+
+.menu {
+    display: grid;
+    grid-template-columns: auto 45px 30px;
+    align-items: center;
+}
+
+.menuleft {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 40px);
+    align-items: center;
+}
+
+.menuRigth {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 40px);
+    align-items: center;
+}
+
+div1 {
+    border: 1px solid red;
+}

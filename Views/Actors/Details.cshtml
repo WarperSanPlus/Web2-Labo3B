@@ -1,0 +1,39 @@
+﻿@model MoviesDBManager.Models.Actor
+
+@{
+    ViewBag.Title = "Details " + Model.Name;
+    bool writeAccess = (bool)MoviesDBManager.Models.OnlineUsers.Write_Access();
+}
+<div class="mainDetails">
+    <div class="prevent-select" style="padding-top:10px;">
+        <div class="detailsHeader">
+            <div class="ActorDetailsName"> @Model.Name</div>
+            @if (writeAccess)
+            {
+                @Helper.IconCmd("Actors", "Edit", "fa-edit", "Modifier...")
+                @Helper.IconConfirmCmd("Actors", "Delete", "fa-times-rectangle-o", "Effacer " + Model.Name + "?")
+            }
+        </div>
+        <div class="main"> 
+            <div class="ActorDetails-left">
+                <div>
+                    @Helper.Image(Model.Avatar, "largeAvatar")
+                    <div style="display: grid; grid-template-columns: 45px auto; margin-left:1px; margin-top: 8px; margin-bottom: 8px;align-items:center">
+                        @Helper.CountryFlag(Model.CountryCode)
+                        <div> Né le @Model.BirthDate.ToLongDateString()</div>
+                    </div>
+                </div>
+                <div class="ActorDetails-right">
+                    <div class="detailsSectionTitle">Filmographie</div>
+                    <div class="MoviesContainer" style="margin-top:10px">
+                        @{ Html.RenderPartial("~/Views/Movies/Movies.cshtml", Model.Movies); }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p>
+            @Html.ActionLink("retour", "Index")
+        </p>
+    </div>
+</div>
+</div>

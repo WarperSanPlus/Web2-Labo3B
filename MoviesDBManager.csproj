@@ -1,0 +1,389 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C5A64F98-373E-4534-A5B4-4522315C8824}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MoviesDBManager</RootNamespace>
+    <AssemblyName>MoviesDBManager</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44318</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.Web.Infrastructure.2.0.1\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.Mvc.5.2.9\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.Razor.3.2.9\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Code\CustomHelper.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountsController.cs" />
+    <Compile Include="Controllers\ActorsController.cs" />
+    <Compile Include="Controllers\DistributorsController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MoviesController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Actor.cs" />
+    <Compile Include="Models\ActorsRepository.cs" />
+    <Compile Include="Models\EmailView.cs" />
+    <Compile Include="Models\Gender.cs" />
+    <Compile Include="Models\ImageAsset.cs" />
+    <Compile Include="Models\Casting.cs" />
+    <Compile Include="Models\CastingsRepository.cs" />
+    <Compile Include="Models\Countries.cs" />
+    <Compile Include="Models\DB.cs" />
+    <Compile Include="Models\Distribution.cs" />
+    <Compile Include="Models\DistributionsRepository.cs" />
+    <Compile Include="Models\Distributor.cs" />
+    <Compile Include="Models\DistributorsRepository.cs" />
+    <Compile Include="Models\LoginCredential.cs" />
+    <Compile Include="Models\Movie.cs" />
+    <Compile Include="Models\MoviesRepository.cs" />
+    <Compile Include="Models\OnLineUsers.cs" />
+    <Compile Include="Models\PasswordView.cs" />
+    <Compile Include="Models\Repository.cs" />
+    <Compile Include="Models\ResetPasswordCommand.cs" />
+    <Compile Include="Models\SelectListUtilities.cs" />
+    <Compile Include="Models\UnverifiedEmail.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UsersRepository.cs" />
+    <Compile Include="Models\UserType.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Mail\SMTP.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="actors_logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\iso-3166.txt" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\jquery-ui.css" />
+    <Content Include="Content\jquery-ui.structure.css" />
+    <Content Include="Content\jquery-ui.theme.css" />
+    <Content Include="Content\selectionControl.css" />
+    <Content Include="Content\UI-Images\Abort.png" />
+    <Content Include="Content\UI-Images\Accept.png" />
+    <Content Include="Content\UI-Images\admin.png" />
+    <Content Include="Content\UI-Images\Blocked.png" />
+    <Content Include="Content\UI-Images\Masked.png" />
+    <Content Include="Content\UI-Images\neutral.png" />
+    <Content Include="Content\UI-Images\OffLine.png" />
+    <Content Include="Content\UI-Images\OnLine.png" />
+    <Content Include="Content\UI-Images\power user.png" />
+    <Content Include="Content\UI-Images\timeout.png" />
+    <Content Include="Content\UI-Images\typing1.gif" />
+    <Content Include="Content\UI-Images\typing2.gif" />
+    <Content Include="Content\UI-Images\UnBlocked.png" />
+    <Content Include="Content\UI-Images\user.png" />
+    <Content Include="Distributors_Logo.png" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Images_Data\Actor_Avatars\0323801f-4796-4341-be0c-8201a746270a.Jpeg" />
+    <Content Include="Images_Data\Actor_Avatars\1a9511b5-e0a7-4e97-8dc3-ed572ae7cfea.Jpeg" />
+    <Content Include="Images_Data\Actor_Avatars\41f6c464-d295-4309-aa7c-a4b79472ef02.Jpeg" />
+    <Content Include="Images_Data\Actor_Avatars\44017875-b086-4525-ba68-61e113502842.Jpeg" />
+    <Content Include="Images_Data\Actor_Avatars\4a80e3af-0ac4-44b6-902a-a552b288e20f.Jpeg" />
+    <Content Include="Images_Data\Actor_Avatars\520dbc19-9182-403f-b2a2-85ee759bd69c.Jpeg" />
+    <Content Include="Images_Data\Actor_Avatars\57224b85-286c-43d0-b1c4-24d3ae149fe0.Jpeg" />
+    <Content Include="Images_Data\Actor_Avatars\57266f9b-9331-43e6-8e36-9ba49556492b.Jpeg" />
+    <Content Include="Images_Data\Actor_Avatars\68aeb749-b8bd-4d01-9d11-62395c865e21.Jpeg" />
+    <Content Include="Images_Data\Actor_Avatars\729de96e-2625-4969-9f33-3b511a4a7ff8.Jpeg" />
+    <Content Include="Images_Data\Actor_Avatars\72f952f1-dc1d-4a2d-b723-5ec937e0d0e7.Jpeg" />
+    <Content Include="Images_Data\Actor_Avatars\75b6bd2a-c14f-467c-bd63-78451ddeb088.Jpeg" />
+    <Content Include="Images_Data\Actor_Avatars\80834623-68c7-4151-8db5-2fc13189c792.Jpeg" />
+    <Content Include="Images_Data\Actor_Avatars\883b95f8-fb6f-4e30-89b1-3b33bfb434b0.Jpeg" />
+    <Content Include="Images_Data\Actor_Avatars\8d5f8567-bb7d-4e83-92d3-fdd2385421b4.Jpeg" />
+    <Content Include="Images_Data\Actor_Avatars\ae2fff22-5037-4a2b-aae6-7477dca5a137.Jpeg" />
+    <Content Include="Images_Data\Actor_Avatars\b6b2ef8f-b558-46c4-a0ae-5b94e136b7f9.Jpeg" />
+    <Content Include="Images_Data\Actor_Avatars\dad16aed-e417-4d63-aa3a-33c7c7664ea8.Jpeg" />
+    <Content Include="Images_Data\Actor_Avatars\e0760208-6eba-4c08-be30-4c542e8b48e6.Jpeg" />
+    <Content Include="Images_Data\Actor_Avatars\f6fa911d-088e-435d-8825-baa5759b25ba.Jpeg" />
+    <Content Include="Images_Data\Actor_Avatars\no_avatar.png" />
+    <Content Include="Images_Data\Distributor_Logos\3ad0f7c0-cbd4-47c8-85d3-e39818eb8590.Jpeg" />
+    <Content Include="Images_Data\Distributor_Logos\4a1979ac-6680-4812-aa81-3f74585f5114.Jpeg" />
+    <Content Include="Images_Data\Distributor_Logos\4ec46e66-3d9a-45d2-9b2b-5c82610c9943.Jpeg" />
+    <Content Include="Images_Data\Distributor_Logos\52b761ee-f8c9-4147-bc2d-f84588a8dda3.Jpeg" />
+    <Content Include="Images_Data\Distributor_Logos\92cf25ec-a603-4479-aa3e-23bec72ee300.Jpeg" />
+    <Content Include="Images_Data\Distributor_Logos\9c84613f-90a0-4234-98ee-d48c97d05c85.Jpeg" />
+    <Content Include="Images_Data\Distributor_Logos\a26202e6-bb37-465a-ba24-06b10f685aa1.Jpeg" />
+    <Content Include="Images_Data\Distributor_Logos\dc5c9526-5808-46b4-8088-db6c208a6911.jpeg" />
+    <Content Include="Images_Data\Distributor_Logos\e1fdc50d-7949-48dd-b831-7702f3644f31.Jpeg" />
+    <Content Include="Images_Data\Distributor_Logos\No_Logo.png" />
+    <Content Include="Images_Data\Loading_icon.gif" />
+    <Content Include="Images_Data\Movie_Posters\079c9ae6-469e-42a0-a062-875dc3372fe7.Jpeg" />
+    <Content Include="Images_Data\Movie_Posters\215e442d-eb70-49f1-b83b-bf0e2e23a961.Jpeg" />
+    <Content Include="Images_Data\Movie_Posters\3d6ded35-1aa9-4fc9-abfe-34f2a4f6ca3c.Jpeg" />
+    <Content Include="Images_Data\Movie_Posters\637ecc89-e273-41b0-b0a6-628a40a00adc.Jpeg" />
+    <Content Include="Images_Data\Movie_Posters\7607a1cc-c37b-44f1-b717-1665ac5acbc3.Jpeg" />
+    <Content Include="Images_Data\Movie_Posters\d1f8b666-efd8-4bb4-8cbc-69083315a3a5.Jpeg" />
+    <Content Include="Images_Data\Movie_Posters\d9506629-f060-4a50-ab57-e4dbc91c6e68.Jpeg" />
+    <Content Include="Images_Data\Movie_Posters\df8fca96-9470-4a73-a4cc-a9b332e82875.Jpeg" />
+    <Content Include="Images_Data\Movie_Posters\f2feb43f-be02-4d65-93c4-2d4c7cfa8a02.Jpeg" />
+    <Content Include="Images_Data\Movie_Posters\no_poster.png" />
+    <Content Include="Images_Data\No_Image.png" />
+    <Content Include="Images_Data\User_Avatars\8f4fcab1-187c-4808-b1d6-f1138a7c0cd2.jpeg" />
+    <Content Include="Images_Data\User_Avatars\dc030981-588c-4130-97f4-7f38fbee5db4.jpeg" />
+    <Content Include="Images_Data\User_Avatars\no_avatar.png" />
+    <Content Include="info-icon.png" />
+    <Content Include="Scripts\bootbox.js" />
+    <Content Include="Scripts\bootbox.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="App_Code\Helper.cshtml" />
+    <Content Include="App_Data\Actors.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Castings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Movies.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Distributions.json" />
+    <Content Include="App_Data\Distributors.json" />
+    <Content Include="App_Data\UserTypes.json" />
+    <Content Include="App_Data\Genders.json" />
+    <Content Include="App_Data\ResetPasswordCommands.json" />
+    <Content Include="App_Data\UnverifiedEmails.json" />
+    <Content Include="App_Data\Users.json" />
+    <Content Include="PLan de site.pdf" />
+    <None Include="Properties\PublishProfiles\MDB2023 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\MoviesRepository - Web Deploy.pubxml" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\imageControl-2.0.js" />
+    <Content Include="Scripts\session.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\NotificationsHandler.js" />
+    <Content Include="Scripts\partialRefresh.js" />
+    <Content Include="Scripts\selectionControl.js" />
+    <Content Include="Scripts\selections.js" />
+    <Content Include="Scripts\SiteScripts.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Actors\Edit.cshtml" />
+    <Content Include="Views\Actors\ActorForm.cshtml" />
+    <Content Include="Views\Actors\Create.cshtml" />
+    <Content Include="Views\Actors\Actors.cshtml" />
+    <Content Include="Views\Actors\Index.cshtml" />
+    <Content Include="Views\Movies\MovieForm.cshtml" />
+    <Content Include="Views\Movies\Movies.cshtml" />
+    <Content Include="Views\Movies\Create.cshtml" />
+    <Content Include="Views\Movies\Edit.cshtml" />
+    <Content Include="Views\Movies\Index.cshtml" />
+    <Content Include="Views\Actors\Details.cshtml" />
+    <Content Include="Views\Movies\Details.cshtml" />
+    <Content Include="Views\Distributors\Create.cshtml" />
+    <Content Include="Views\Distributors\Details.cshtml" />
+    <Content Include="Views\Distributors\DistributorForm.cshtml" />
+    <Content Include="Views\Distributors\Distributors.cshtml" />
+    <Content Include="Views\Distributors\Edit.cshtml" />
+    <Content Include="Views\Distributors\Index.cshtml" />
+    <Content Include="Views\Accounts\AlreadyVerified.cshtml" />
+    <Content Include="Views\Accounts\EmailChanged.cshtml" />
+    <Content Include="Views\Accounts\EmailChangedAlert.cshtml" />
+    <Content Include="Views\Accounts\EmailChangedError.cshtml" />
+    <Content Include="Views\Accounts\Login.cshtml" />
+    <Content Include="Views\Accounts\Profil.cshtml" />
+    <Content Include="Views\Accounts\ProfilForm.cshtml" />
+    <Content Include="Views\Accounts\ResetPassword.cshtml" />
+    <Content Include="Views\Accounts\ResetPasswordCommand.cshtml" />
+    <Content Include="Views\Accounts\ResetPasswordCommandAlert.cshtml" />
+    <Content Include="Views\Accounts\ResetPasswordError.cshtml" />
+    <Content Include="Views\Accounts\ResetPasswordSuccess.cshtml" />
+    <Content Include="Views\Accounts\Subscribe.cshtml" />
+    <Content Include="Views\Accounts\SubscribeDone.cshtml" />
+    <Content Include="Views\Accounts\VerifyDone.cshtml" />
+    <Content Include="Views\Accounts\VerifyError.cshtml" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>53775</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44318/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

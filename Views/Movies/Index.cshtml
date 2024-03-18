@@ -1,0 +1,26 @@
+﻿@model IEnumerable<MoviesDBManager.Models.Movie>
+@{
+    ViewBag.Title = "Index";
+    bool writeAccess = (bool)MoviesDBManager.Models.OnlineUsers.Write_Access();
+}
+<div class="prevent-select">
+    @if (writeAccess)
+    {
+        <h2>Films @Helper.IconCmd("Movies", "Create", "fa-plus-square", "Ajouter...")</h2>
+    }
+    else
+    {
+        <h2>Films</h2>
+    }
+    <hr />
+    <div class="main">
+        <div id="MoviesContainer" class=" MoviesContainer"> <!-- Refreshed periodically --> </div>
+    </div>
+</div>
+
+@section Scripts {
+
+    <script defer>
+        let movies = new PartialRefresh("@Url.Action("Movies")", "MoviesContainer", 15);
+    </script>
+}

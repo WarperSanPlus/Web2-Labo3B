@@ -1,0 +1,25 @@
+﻿@model IEnumerable<MoviesDBManager.Models.Distributor>
+@{
+    ViewBag.Title = "Index";
+    bool writeAccess = (bool)MoviesDBManager.Models.OnlineUsers.Write_Access();
+}
+<div class="prevent-select">
+    @if (writeAccess)
+    {
+        <h2>Distributeurs @Helper.IconCmd("Distributors", "Create", "fa-plus-square", "Ajouter...")</h2>
+    }
+    else
+    {
+        <h2>Distributeurs @Helper.IconCmd("Distributors", "Create", "fa-plus-square", "Ajouter...")</h2>
+    }
+    <hr />
+    <div class="main">
+        <div id="DistributorsContainer" class="DistributorsContainer"> <!-- Refreshed periodically --> </div>
+    </div>
+</div>
+@section Scripts {
+    <script defer>
+        PartialRefresh.setTimeOutPage("@Url.Action("End","Session")");
+        let Distributors = new PartialRefresh("@Url.Action("Distributors", "Distributors")", "DistributorsContainer", 15);
+    </script>
+}

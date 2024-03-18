@@ -1,0 +1,54 @@
+﻿@model MoviesDBManager.Models.Distributor
+@{
+    bool createMode = Model.Id == 0;
+    string pageTitle = createMode ? "Ajout de distributeur" : "Modification de distributeur";
+
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="formLayout">
+        <h3>@pageTitle</h3>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <fieldset>
+            <div class="legend">
+                @Html.Label("Nom")
+            </div>
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", placeholder = "Nom" } })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </fieldset>
+        <fieldset>
+            <div class="legend">
+                @Html.LabelFor(model => model.CountryCode)
+            </div>
+            @Helper.CountrySelector("CountryCode", Model.CountryCode)
+            @Html.ValidationMessageFor(model => model.CountryCode, "", new { @class = "text-danger" })
+        </fieldset>
+        <fieldset>
+            <div class="legend">
+                @Html.LabelFor(model => model.Logo)
+            </div>
+            @Helper.ImageUploader("Logo", Model.Logo, "Cliquez pour choisir une image")
+            @Html.ValidationMessageFor(model => model.Logo, "", new { @class = "text-danger" })
+        </fieldset>
+
+        @if (!createMode)
+        {
+            var filmography = Model.MoviesToSeleclist();
+            var allMovies = MoviesDBManager.Models.DB.Movies.ToSelectList();
+            <fieldset>
+                <div class="legend">
+                    @Html.Label("Filmographie")
+                </div>
+                @Helper.SelectionLists("SelectedMovies", filmography, allMovies)
+            </fieldset>
+        }
+        <input type="submit" value="Enregistrer" class="btn btn-default" />
+        <hr />
+        @Html.ActionLink("Retour", "Index")
+    </div>
+}

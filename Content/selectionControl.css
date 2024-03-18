@@ -1,0 +1,51 @@
+﻿
+.selectionsGrid {
+    display: flex;
+    flex-flow: row;
+    font-family: Courrier,monospace;
+    font-size: smaller;
+
+    padding:0px;
+    justify-content:space-between;
+}
+
+.HorSelectionsCMD {
+    display: flex;
+    flex-direction: column;
+    min-width: 40px;
+    align-items: center;
+    justify-content: center;
+}
+
+.VerSelectionsCMD {
+    display: none;
+    flex-direction: row;
+    min-height: 40px;
+    align-items: center;
+    justify-content: center;
+}
+
+.UnselectAll {
+    margin: 6px;
+}
+
+.selectionsGrid select {
+    flex: 1;
+    min-width: 120px;
+    max-width:400px !important;
+}
+
+@media screen and (max-width: 440px ) {
+    .selectionsGrid {
+        display: flex;
+        flex-flow: column;
+    }
+
+    .HorSelectionsCMD {
+        display: none;
+    }
+
+    .VerSelectionsCMD {
+        display: flex;
+    }
+}

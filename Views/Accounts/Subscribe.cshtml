@@ -1,0 +1,37 @@
+﻿@model MoviesDBManager.Models.User
+
+
+<h2>Inscription</h2>
+<hr />
+
+<div class="main">
+    @{
+        ViewBag.Title = "Subscribe";
+        Html.RenderPartial("ProfilForm");
+    }
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script defer>
+
+        $.validator.addMethod(
+            "GenderId",
+            function (value, element) { return ($("input[name='GenderId']:checked").val() != undefined); },
+            "Choix obligatoire"
+        );
+
+        $("#toggleShowPassword").hide();
+        $("#toggleShowPassword").click(() => {
+            $("#Password").attr("type", $("#Password").attr("type") == 'password' ? 'text' : 'password');
+            $("#ConfirmPassword").attr("type", $("#ConfirmPassword").attr("type") == 'password' ? 'text' : 'password');
+            $("#toggleShowPassword").toggleClass("fa-eye");
+            $("#toggleShowPassword").toggleClass("fa-eye-slash");
+        });
+        $("#Password").keyup(() => {
+            if ($("#Password").val() == "")
+                $("#toggleShowPassword").hide();
+            else
+                $("#toggleShowPassword").show();
+        })
+    </script>
+}

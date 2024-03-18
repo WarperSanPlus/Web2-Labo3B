@@ -1,0 +1,76 @@
+﻿@model MoviesDBManager.Models.Movie
+@{
+    bool createMode = Model.Id == 0;
+    string pageTitle = createMode ? "Ajout de film" : "Modification de film";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="formLayout">
+    <h3>@pageTitle</h3>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <fieldset>
+        <div class="legend">
+            @Html.Label("Titre")
+        </div>
+        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+    </fieldset>
+    <fieldset>
+        <div class="legend">
+            @Html.LabelFor(model => model.Synopsis)
+        </div>
+        @Html.EditorFor(model => model.Synopsis, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Synopsis, "", new { @class = "text-danger" })
+    </fieldset>
+    <fieldset>
+        <div class="legend">
+            @Html.LabelFor(model => model.ReleaseYear)
+        </div>
+        @Html.EditorFor(model => model.ReleaseYear, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.ReleaseYear, "", new { @class = "text-danger" })
+    </fieldset>
+    <fieldset>
+        <div class="legend">
+            @Html.LabelFor(model => model.CountryCode)
+        </div>
+        @Helper.CountrySelector("CountryCode", Model.CountryCode)
+        @Html.ValidationMessageFor(model => model.CountryCode, "", new { @class = "text-danger" })
+    </fieldset>
+    <fieldset>
+        <div class="legend">
+            @Html.LabelFor(model => model.Poster)
+        </div>
+        @Helper.ImageUploader("Poster", Model.Poster, "Cliquez pour choisir une image")
+        @Html.ValidationMessageFor(model => model.Poster, "", new { @class = "text-danger" })
+    </fieldset>
+    @if (!createMode)
+    {
+        var casting = Model.ActorsToSeleclist();
+        var allActors = MoviesDBManager.Models.DB.Actors.ToSelectList();
+        var distributions = Model.DistributorsToSeleclist();
+        var allDistributors = MoviesDBManager.Models.DB.Distributors.ToSelectList();
+        <fieldset>
+            <div class="legend">
+                @Html.Label("Acteurs")
+            </div>
+            @Helper.SelectionLists("SelectedActors", casting, allActors)
+        </fieldset>
+        <fieldset>
+            <div class="legend">
+                @Html.Label("Distributeurs")
+            </div>
+            @Helper.SelectionLists("SelectedDistributors", distributions, allDistributors)
+        </fieldset>
+    }
+    <input type="submit" value="Enregistrer" class="btn btn-default" />
+    <hr />
+    @Html.ActionLink("Retour", "Index")
+    <br />
+</div>
+}
+

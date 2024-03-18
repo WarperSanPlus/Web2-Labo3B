@@ -1,0 +1,40 @@
+﻿@model MoviesDBManager.Models.Distributor
+
+@{
+    ViewBag.Title = "Details " + Model.Name;
+    bool writeAccess = (bool)MoviesDBManager.Models.OnlineUsers.Write_Access();
+}
+<div class="mainDetails">
+    <div class="prevent-select" style="padding-top:10px;">
+        <div class="detailsHeader">
+            <div class="DistributorName"> @Model.Name</div>
+            @if (writeAccess)
+            {
+                @Helper.IconCmd("Distributors", "Edit", "fa-edit", "Modifier...")
+                @Helper.IconConfirmCmd("Distributors", "Delete", "fa-times-rectangle-o", "Effacer " + Model.Name + "?")
+            }
+        </div>
+        <div class="main">
+            <div class="DistributorDetails-left">
+                <div>
+                    @Helper.Image(Model.Logo, "largeLogo")
+                    <div style="display: grid; grid-template-columns: 45px auto; margin-left:1px; margin-top: 8px; margin-bottom: 8px;align-items:center">
+                        @Helper.CountryFlag(Model.CountryCode)
+                        <div> </div>
+
+                    </div>
+                </div>
+                <div class="DistributorDetails-right">
+                    <div class="detailsSectionTitle">Filmographie</div>
+                    <div class="MoviesContainer" style="margin-top:10px">
+                        @{ Html.RenderPartial("~/Views/Movies/Movies.cshtml", Model.Movies); }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <p>
+            @Html.ActionLink("retour", "Index")
+        </p>
+    </div>
+</div>
