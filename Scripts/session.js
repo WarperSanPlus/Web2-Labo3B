@@ -15,7 +15,7 @@
 let currentTimeouID = undefined;
 let initialized = false;
 let timeBeforeRedirect = 5;
-let timeoutCallBack = () => { window.location.replace(""); };
+let timeoutCallBack = () => { window.location.replace("/Accounts/TimedOut"); };
 let infinite = -1;
 let timeLeft = infinite;
 let maxStallingTime = infinite;
@@ -63,3 +63,5 @@ function closePopup() {
     $(".popup").hide();
     startCountdown();
 } 
+
+initTimeout(100);

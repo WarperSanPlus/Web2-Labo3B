@@ -359,6 +359,15 @@ namespace MoviesDBManager.Controllers
             return RedirectToAction("Login");
         }
         
+        public ActionResult TimedOut()
+        {
+            // Log out
+            this.Logout();
+
+            // Go to login
+            return this.RedirectToAction(nameof(Login), new { message = "La session a expirée!\nVeuillez vous reconnecter" });
+        }
+
         #endregion
     }
 }

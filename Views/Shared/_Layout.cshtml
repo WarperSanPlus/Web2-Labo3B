@@ -50,6 +50,10 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @if (currentUser != null)
+    {
+        @Scripts.Render("~/Content/js")
+    }
     @RenderSection("scripts", required: false)
 </body>
 </html>

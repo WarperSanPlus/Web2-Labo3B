@@ -11,7 +11,6 @@ namespace MoviesDBManager
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/partialRefresh.js",
-                        "~/Scripts/session.js",
                         "~/Scripts/bootbox.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -35,7 +34,12 @@ namespace MoviesDBManager
                      "~/Content/jquery-ui.strucure.css",
                      "~/Content/jquery-ui.theme.css",
                      "~/Content/selectionControl.css",
+                      "~/Content/popup.css",
                      "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/Content/js").Include(
+                        "~/Scripts/session.js"
+                        ));
         }
     }
 }
