@@ -365,7 +365,7 @@ namespace MoviesDBManager.Controllers
             this.Logout();
 
             // Go to login
-            return this.RedirectToAction(nameof(Login), new { message = "La session a expirée!\nVeuillez vous reconnecter" });
+            return this.RedirectToAction(nameof(Login), new { message = "La session a expirée! Veuillez vous reconnecter" });
         }
 
         #endregion

@@ -30,6 +30,12 @@
                     <a href="/Distributors/Index">
                         <img src="/Distributors_Logo.png" class="menuIcon" title="Liste des distributeurs" />
                     </a>
+
+                    if (currentUser.IsAdmin)
+                    {
+                        @Helper.IconCmd("Accounts", "UsersList", "menu-Icon fa-users", "Voir les utilisateurs")
+                        @Helper.IconCmd("Accounts", "GroupEmails", "menu-Icon fa-envelope", "Voir les utilisateurs")
+                    }
                 }
             </div>
             @if (currentUser != null)
