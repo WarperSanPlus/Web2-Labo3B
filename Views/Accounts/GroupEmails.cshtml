@@ -1,0 +1,8 @@
+@model MoviesDBManager.Models.User
+@{
+    bool createMode = (Model == null) || (Model.Id == 0);
+    IEnumerable< MoviesDBManager.Models.User>  CountriesSelectList = MoviesDBManager.Models.DB.Users.SortedUsers();
+    }
+
+
+    <h2> allo </h2>

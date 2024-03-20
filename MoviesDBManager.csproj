@@ -332,6 +332,7 @@
     <Content Include="Views\Accounts\SubscribeDone.cshtml" />
     <Content Include="Views\Accounts\VerifyDone.cshtml" />
     <Content Include="Views\Accounts\VerifyError.cshtml" />
+    <Content Include="Views\Accounts\GroupEmails.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

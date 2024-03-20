@@ -369,5 +369,35 @@ namespace MoviesDBManager.Controllers
         }
 
         #endregion
+
+
+
+
+
+
+
+
+
+
+        #region GroupEmail
+
+       // [OnlineUsers.AdminAccess]
+        [HttpGet]
+        public ActionResult GroupEmails()
+        {
+
+            return View();
+        }
+
+
+        [ValidateAntiForgeryToken()]
+        [HttpPost]
+        public ActionResult GroupEmails(string nom)
+        {
+
+            return View();
+        }
+        #endregion
+
     }
 }
