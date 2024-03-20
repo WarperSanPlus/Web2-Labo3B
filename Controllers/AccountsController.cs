@@ -364,20 +364,13 @@ namespace MoviesDBManager.Controllers
             // Log out
             this.Logout();
 
+            this.Session.Abandon();
+
             // Go to login
             return this.RedirectToAction(nameof(Login), new { message = "La session a expirée! Veuillez vous reconnecter" });
         }
 
         #endregion
-
-
-
-
-
-
-
-
-
 
         #region GroupEmail
 
@@ -399,5 +392,22 @@ namespace MoviesDBManager.Controllers
         }
         #endregion
 
+        #region Admin
+
+        [OnlineUsers.AdminAccess]
+        public ActionResult UsersList()
+        {
+            return this.View();
+        }
+
+        public ActionResult Accounts(bool forceRefresh = false)
+        {
+            if (!forceRefresh && !DB.Users.HasChanged)
+                return null;
+
+            return this.PartialView(DB.Users.ToList().OrderBy(c => c.FirstName));
+        }
+
+        #endregion
     }
 }

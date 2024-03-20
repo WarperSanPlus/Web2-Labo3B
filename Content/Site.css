@@ -464,3 +464,12 @@ fieldset {
 div1 {
     border: 1px solid red;
 }
+
+
+.user-list-row > td {
+    vertical-align: middle;
+}
+
+.user-list-row > td > * {
+    margin: 0;
+}

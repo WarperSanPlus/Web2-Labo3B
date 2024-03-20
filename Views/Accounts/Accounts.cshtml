@@ -1,0 +1,68 @@
+﻿@model IEnumerable<MoviesDBManager.Models.User>
+
+@foreach (var item in Model)
+{
+    var fullName = item.FirstName + " " + item.LastName;
+
+    var onlineIcon = "OffLine.png";
+    var status = "Hors ligne";
+
+    if (item.Blocked)
+    {
+        onlineIcon = "Masked.png";
+        status = "Bloqué(e)";
+    }
+    else if (MoviesDBManager.Models.OnlineUsers.IsOnline(item.Id))
+    {
+        onlineIcon = "OnLine.png";
+        status = "En ligne";
+    }
+
+    var userTypeIcon = "user.png";
+    var userStatus = fullName + " est un utilisateur";
+
+    if (item.IsPowerUser)
+    {
+        userTypeIcon = "power user.png";
+        userStatus = fullName + " est un utilisateur élevé";
+    }
+    else if (item.IsAdmin)
+    {
+        userTypeIcon = "admin.png";
+        userStatus = fullName + " est un administrateur";
+    }
+
+    var verifiedIcon = "Abort.png";
+    var verifiedStatus = fullName + " n'est pas vérifié(e)";
+
+    if (item.Verified)
+    {
+        verifiedIcon = "Accept.png";
+        verifiedStatus = fullName + " est vérifié(e)";
+    }
+
+    <tr class="user-list-row">
+        <td>
+            @Helper.Image(item.Avatar, "UserSmallAvatar")
+        </td>
+        <td>
+            <p>@fullName</p>
+        </td>
+        <td>
+            <img src="~/Content/UI-Images/@onlineIcon" class="menuIcon" title="@status" />
+        </td>
+        <td>
+            <img src="~/Content/UI-Images/@userTypeIcon" class="menuIcon" title="@userStatus" />
+        </td>
+        <td>
+            <img src="~/Content/UI-Images/@verifiedIcon" class="menuIcon" title="@verifiedStatus" />
+        </td>
+        <td></td>
+        <td>
+            <i class="fa fa-times-circle fa-2x" style="color:red" title="Bloquer @fullName"></i>
+        </td>
+    </tr>
+    <a href="@Url.Action("Details","Movies", new {id=item.Id})">
+        @item.FirstName
+    </a>
+}

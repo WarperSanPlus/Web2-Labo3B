@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Liste des usagers";
+}
+
+<h2>Liste des usagers</h2>
+<hr />
+
+<div class="prevent-select">
+    <div class="main">
+        <table id="AccountsContainer" class="AccountsContainer">
+            <!-- Refreshed periodically -->
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+
+    <script defer>
+        let accounts = new PartialRefresh("@Url.Action("Accounts")", "AccountsContainer", 15);
+    </script>
+}
