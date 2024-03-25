@@ -334,6 +334,7 @@
     <Content Include="Views\Accounts\VerifyError.cshtml" />
     <Content Include="Views\Accounts\UsersList.cshtml" />
     <Content Include="Views\Accounts\GroupEmails.cshtml" />
+    <Content Include="Views\Accounts\Accounts.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
