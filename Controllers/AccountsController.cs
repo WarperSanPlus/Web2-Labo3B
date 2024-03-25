@@ -400,12 +400,78 @@ namespace MoviesDBManager.Controllers
             return this.View();
         }
 
+        [OnlineUsers.AdminAccess]
         public ActionResult Accounts(bool forceRefresh = false)
         {
-            if (!forceRefresh && !DB.Users.HasChanged)
+            if (!forceRefresh && !OnlineUsers.HasChanged && !DB.Users.HasChanged)
                 return null;
 
-            return this.PartialView(DB.Users.ToList().OrderBy(c => c.FirstName));
+            var user = OnlineUsers.GetSessionUser();
+
+            if (user == null)
+                return null;
+
+            return this.PartialView(
+                DB.Users.ToList()
+                .Where(u => u.Id != user.Id)
+                .OrderBy(u => u.FirstName)
+                .ThenBy(u => u.LastName)
+                .ThenBy(u => u.Id)
+                );
+        }
+
+        [OnlineUsers.AdminAccess]
+        public ActionResult BlockUser(int id, bool blocked = false)
+        {
+            User onlineUser = OnlineUsers.GetSessionUser();
+
+            if (onlineUser != null && onlineUser.Id == id)
+                return null;
+
+            User user = DB.Users.Get(id);
+
+            if (user == null)
+                return null;
+            
+            // Update data
+            user.Blocked = blocked;
+            DB.Users.Update(user);
+
+            // Subject
+            var subject = blocked ? "Blockage" : "Déblockage";
+
+            // Body
+            var body = blocked
+                ? $"Bonjour {user.GetFullName(true)},<br/><br/>Nous vous informons que vous avez été bloqué(e)."
+                : $"Bonjour {user.GetFullName(true)},<br/><br/>Nous vous informons que vous avez été débloqué(e).";
+
+            SMTP.SendEmail(user.GetFullName(), user.Email, subject, body);
+
+            return null;
+        }
+
+        [OnlineUsers.AdminAccess]
+        public ActionResult DeleteUser(int id)
+        {
+            User onlineUser = OnlineUsers.GetSessionUser();
+
+            if (onlineUser != null && onlineUser.Id == id)
+                return null;
+
+            User user = DB.Users.Get(id);
+
+            if (user == null) 
+                return null;
+
+            DB.Users.Delete(id);
+
+            // Body
+            var body = $@"Bonjour {user.GetFullName(true)},<br/><br/>Nous vous 
+                signalons que votre compte a été supprimé. <br/><br/>Merci de votre compréhension";
+
+            SMTP.SendEmail(user.GetFullName(), user.Email, "Suppression du compte", body);
+
+            return null;
         }
 
         #endregion
