@@ -2,7 +2,7 @@
 
 @foreach (var item in Model)
 {
-    var fullName = item.FirstName + " " + item.LastName;
+    var fullName = item.GetFullName();
 
     var onlineIcon = "OffLine.png";
     var status = "Hors ligne";
@@ -21,15 +21,15 @@
     var userTypeIcon = "user.png";
     var userStatus = fullName + " est un utilisateur";
 
-    if (item.IsPowerUser)
-    {
-        userTypeIcon = "power user.png";
-        userStatus = fullName + " est un utilisateur élevé";
-    }
-    else if (item.IsAdmin)
+    if (item.IsAdmin)
     {
         userTypeIcon = "admin.png";
         userStatus = fullName + " est un administrateur";
+    }
+    else if (item.IsPowerUser)
+    {
+        userTypeIcon = "power user.png";
+        userStatus = fullName + " est un utilisateur élevé";
     }
 
     var verifiedIcon = "Abort.png";
@@ -41,25 +41,39 @@
         verifiedStatus = fullName + " est vérifié(e)";
     }
 
+    var blockedStatus = (item.Blocked ? "Débloquer" : "Bloquer") + " " + fullName;
+
     <tr class="user-list-row">
-        <td>
+        <td class="user-list-icon">
             @Helper.Image(item.Avatar, "UserSmallAvatar")
         </td>
         <td>
             <p>@fullName</p>
         </td>
-        <td>
+        <td class="user-list-icon">
             <img src="~/Content/UI-Images/@onlineIcon" class="menuIcon" title="@status" />
         </td>
-        <td>
+        <td class="user-list-icon">
             <img src="~/Content/UI-Images/@userTypeIcon" class="menuIcon" title="@userStatus" />
         </td>
-        <td>
+        <td class="user-list-icon">
             <img src="~/Content/UI-Images/@verifiedIcon" class="menuIcon" title="@verifiedStatus" />
         </td>
-        <td></td>
-        <td>
-            <i class="fa fa-times-circle fa-2x" style="color:red" title="Bloquer @fullName"></i>
+        <td class="user-list-icon blockCB">
+            <input 
+                   type="checkbox" 
+                   name="@fullName" 
+                   data-id="@item.Id" 
+                   checked="@(item.Blocked)" 
+                   title="@blockedStatus">
+        </td>
+        <td class="user-list-icon">
+            <i 
+               class="fa fa-times-circle fa-2x removeButton" 
+               style="color:red" 
+               title="Supprimer @fullName"
+               data-name="@fullName"
+               data-id="@item.Id"></i>
         </td>
     </tr>
     <a href="@Url.Action("Details","Movies", new {id=item.Id})">
