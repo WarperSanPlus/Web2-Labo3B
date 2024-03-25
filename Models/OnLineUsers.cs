@@ -20,19 +20,42 @@ namespace MoviesDBManager.Models
 
         public static bool IsOnline(int userId) => ConnectedUsersId.Contains(userId);
 
+        private static bool hasChanged = false;
+
+        /// <summary>
+        /// Has changed since last call
+        /// </summary>
+        public static bool HasChanged
+        {
+            get
+            {
+                var saved = hasChanged;
+
+                hasChanged = false;
+
+                return saved;
+            }
+        }
+
         public static void AddSessionUser(int userId)
         {
             HttpContext.Current.Session["UserId"] = userId;
 
             if (!IsOnline(userId))
+            {
                 ConnectedUsersId.Add(userId);
+                hasChanged = true;
+            }
         }
         public static void RemoveSessionUser()
         {
             User currentUser = GetSessionUser();
 
             if (currentUser != null)
+            {
+                hasChanged = true;
                 _ = ConnectedUsersId.Remove(currentUser.Id);
+            }
 
             HttpContext.Current?.Session.Abandon();
         }
