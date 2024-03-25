@@ -479,12 +479,47 @@ div1 {
 
 .user-list-row > td {
     vertical-align: middle;
+
 }
 
-.user-list-row > td > * {
-    margin: 0;
-}
+    .user-list-row > td > * {
+        margin: 10px;
+    }
 
 .user-list-icon {
     width: 50px;
+}
+.contourNoire {
+    border: 1px solid black; 
+}
+.tablePadding {
+    padding:50px;
+}
+.BoutonPadding {
+    margin-left:450px;
+    
+}
+.petitBoutonPadding {
+    margin-left: 150px;
+}
+.couleurBleu {
+   color:aqua;
+}
+.mailSenderMargin {
+    margin: 50px;
+    width: 50%;
+}
+.champ {
+    height: 400px;
+    width: 100%;
+    margin: 20px;
+}
+.sujet {
+   
+    width: 100%;
+    margin: 20px;
+}
+.ToutEspace {
+    width: 100%;
+    height: 100%;
 }

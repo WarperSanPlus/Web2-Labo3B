@@ -379,7 +379,7 @@ namespace MoviesDBManager.Controllers
         public ActionResult GroupEmails()
         {
 
-            return View();
+            return View(DB.Users.ToList().OrderBy(c => c.FirstName));
         }
 
 

@@ -1,8 +1,49 @@
-@model MoviesDBManager.Models.User
-@{
-    bool createMode = (Model == null) || (Model.Id == 0);
-    IEnumerable< MoviesDBManager.Models.User>  CountriesSelectList = MoviesDBManager.Models.DB.Users.SortedUsers();
-    }
+@model IEnumerable<MoviesDBManager.Models.User>
+
+<h2> Envoi de courriel </h2>
+<div class="prevent-select">
+    <div class="main">
+
+        <form >
+            <div class="contourNoire">
+                <h2 class="couleurBleu"> Destinataire</h2>
+                <div>
+
+                    <button class="BoutonPadding"> Tout selectionner</button>
+                    <button class="petitBoutonPadding"> Aucun</button>
+
+                </div>
+
+                <div class="tablePadding">
+                    <table class="contourNoire " id="AccountsContainer">
 
 
-    <h2> allo </h2>
+                        @foreach (var item in Model)
+                        {
+                            var fullName = item.FirstName + " " + item.LastName;
+                            <tr class="user-list-row">
+                                <td>
+                                    @Helper.Image(item.Avatar, "UserSmallAvatar")
+                                </td>
+                                <td>
+                                    <p>@fullName</p>
+                                </td>
+
+                            </tr>
+
+                        }
+                    </table>
+                </div>
+            </div>
+                <div class="contourNoire mailSenderMargin">
+                    <h2 class="couleurBleu"> Courriel</h2>
+                    <div class="ToutEspace">
+                        <input type="text" id="Name" name="Name" placeholder="Sujet" class="contourNoire sujet  ">
+
+                        <br />
+                        <input type="text" id="Name" name="Name" placeholder="Contenue" class="contourNoire champ">
+                    </div>
+                    </div>
+        </form>
+    </div>
+</div>

@@ -64,4 +64,4 @@ function closePopup() {
     startCountdown();
 } 
 
-initTimeout(100);
+//initTimeout(100);
