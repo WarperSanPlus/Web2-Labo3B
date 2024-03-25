@@ -33,20 +33,20 @@
 
                     if (currentUser.IsAdmin)
                     {
-                        @Helper.IconCmd("Accounts", "UsersList", "menu-Icon fa-users", "Voir les utilisateurs")
-                        @Helper.IconCmd("Accounts", "GroupEmails", "menu-Icon fa-envelope", "Voir les utilisateurs")
+                        @Helper.IconCmd("Accounts", "UsersList", "menuIcon menu-fa fa-users", "Voir les utilisateurs")
+                        @Helper.IconCmd("Accounts", "GroupEmails", "menuIcon menu-fa fa-envelope", "Voir les utilisateurs")
                     }
                 }
             </div>
             @if (currentUser != null)
             {
                 @Helper.avatarLink(currentUser.Avatar, "/Accounts/Profil")
-                @Helper.IconCmd("Accounts", "Logout", "menu-Icon fa fa-sign-out", "Se déconnecter...")
+                @Helper.IconCmd("Accounts", "Logout", "menuIcon menu-fa fa fa-sign-out", "Se déconnecter...")
             }
             else
             {
                 <span>&nbsp;</span>
-                @Helper.IconCmd("Accounts", "Login", "menu-Icon fa fa-sign-in", "Se connecter...")
+                @Helper.IconCmd("Accounts", "Login", "menuIcon menu-fa fa fa-sign-in", "Se connecter...")
             }
         </div>
     </div>

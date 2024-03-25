@@ -443,6 +443,12 @@ fieldset {
     margin-left: 5px;
 }
 
+.menu-fa {
+    -webkit-text-stroke: white;
+    -webkit-text-fill-color: white;
+    vertical-align: middle;
+}
+
 .menu {
     display: grid;
     grid-template-columns: auto 45px 30px;
@@ -466,10 +472,19 @@ div1 {
 }
 
 
+/* UsersList */
+#AccountsContainer {
+    width: 100%;
+}
+
 .user-list-row > td {
     vertical-align: middle;
 }
 
 .user-list-row > td > * {
     margin: 0;
+}
+
+.user-list-icon {
+    width: 50px;
 }
