@@ -43,7 +43,7 @@
 
     var blockedStatus = (item.Blocked ? "Débloquer" : "Bloquer") + " " + fullName;
 
-    <tr class="user-list-row">
+    <tr class="user-list-row" data-id="@item.Id" data-name="@fullName">
         <td class="user-list-icon">
             @Helper.Image(item.Avatar, "UserSmallAvatar")
         </td>
@@ -51,29 +51,26 @@
             <p>@fullName</p>
         </td>
         <td class="user-list-icon">
-            <img src="~/Content/UI-Images/@onlineIcon" class="menuIcon" title="@status" />
+            <img src="~/Content/UI-Images/@onlineIcon" class="UserSmallAvatar" title="@status" />
         </td>
         <td class="user-list-icon">
-            <img src="~/Content/UI-Images/@userTypeIcon" class="menuIcon" title="@userStatus" />
+            <img src="~/Content/UI-Images/@userTypeIcon" class="UserSmallAvatar promoteBtn" title="@userStatus" />
         </td>
         <td class="user-list-icon">
-            <img src="~/Content/UI-Images/@verifiedIcon" class="menuIcon" title="@verifiedStatus" />
+            <img src="~/Content/UI-Images/@verifiedIcon" class="UserSmallAvatar" title="@verifiedStatus" />
         </td>
-        <td class="user-list-icon blockCB">
+        <td class="user-list-icon">
             <input 
                    type="checkbox" 
+                   class="blockCB"
                    name="@fullName" 
-                   data-id="@item.Id" 
                    checked="@(item.Blocked)" 
                    title="@blockedStatus">
         </td>
         <td class="user-list-icon">
             <i 
                class="fa fa-times-circle fa-2x removeButton" 
-               style="color:red" 
-               title="Supprimer @fullName"
-               data-name="@fullName"
-               data-id="@item.Id"></i>
+               title="Supprimer @fullName"></i>
         </td>
     </tr>
     <a href="@Url.Action("Details","Movies", new {id=item.Id})">

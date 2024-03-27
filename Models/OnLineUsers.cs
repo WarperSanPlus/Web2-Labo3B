@@ -8,7 +8,7 @@ namespace MoviesDBManager.Models
     {
         private const string TAG_ONLINE_USERS = "OnLineUsers";
 
-        public static List<int> ConnectedUsersId
+        private static List<int> ConnectedUsersId
         {
             get
             {
@@ -18,6 +18,7 @@ namespace MoviesDBManager.Models
             }
         }
 
+        /// <returns>Is the given id identified as a connected user</returns>
         public static bool IsOnline(int userId) => ConnectedUsersId.Contains(userId);
 
         private static bool hasChanged = false;
@@ -31,6 +32,7 @@ namespace MoviesDBManager.Models
             {
                 var saved = hasChanged;
 
+                // Reset
                 hasChanged = false;
 
                 return saved;
@@ -41,20 +43,29 @@ namespace MoviesDBManager.Models
         {
             HttpContext.Current.Session["UserId"] = userId;
 
+            // If the user is not online
             if (!IsOnline(userId))
             {
+                // Add user from list
                 ConnectedUsersId.Add(userId);
+
+                // Update status
                 hasChanged = true;
             }
         }
         public static void RemoveSessionUser()
         {
+            // Get local user
             User currentUser = GetSessionUser();
 
+            // If local user is set
             if (currentUser != null)
             {
-                hasChanged = true;
+                // Remove user from list
                 _ = ConnectedUsersId.Remove(currentUser.Id);
+
+                // Update status
+                hasChanged = true;
             }
 
             HttpContext.Current?.Session.Abandon();

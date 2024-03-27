@@ -17,13 +17,12 @@
 @section Scripts {
 
     <script defer>
-        let onBlockChanged = (child) => {
-            if (child == undefined)
-                return;
+        let onBlockChanged = (parent, child) => {
 
             // State
             let checked = child.prop("checked");
-            let name = child.prop("name");
+
+            let name = parent.data("name");
             let message = checked
                 ? "Voulez-vous bloquer " + name + "?"
                 : "Voulez-vous débloquer " + name +"?";
@@ -36,18 +35,14 @@
                         return;
                     }
 
-                    $.ajax({
-                        url: "@Url.Action("BlockUser", "Accounts")?id=" + child.data("id") + "&blocked=" + checked,
-                        success: () => { accounts.refresh(true); },
-                        error: () => { bootbox.alert("Une erreur est survenue lors de l'opération"); }
-                    });
+                    accounts.command("@Url.Action("BlockUser", "Accounts")?id=" + parent.data("id") + "&blocked=" + checked)
                 }
             );
         };
 
-        let onRemoveClicked = (child) => {
+        let onRemoveClicked = (parent, child) => {
 
-            let name = child.data("name");
+            let name = parent.data("name");
             let message = "Voulez-vous vraiment supprimer " + name + "?";
 
             bootbox.confirm(message,
@@ -56,27 +51,57 @@
                     if (!result)
                         return;
 
-                    $.ajax({
-                        url: "@Url.Action("DeleteUser", "Accounts")?id=" + child.data("id"),
-                        success: () => { accounts.refresh(true); },
-                        error: () => { bootbox.alert("Une erreur est survenue lors de l'opération"); }
-                    });
-                    console.log("A");
+                    accounts.command("@Url.Action("DeleteUser", "Accounts")?id=" + parent.data("id"));
                 }
             );
+        };
+
+        let onPromoteClicked = (parent, child) => {
+            accounts.command("@Url.Action("PromoteUser", "Accounts")?id=" + parent.data("id"));
         };
 
         let onLoad = () => {
             $(".blockCB").each(function () {
                 $(this).change(function () {
-                    onBlockChanged($(this).children("input:checkbox:first-child"));
+                    if ($(this) == undefined)
+                        return;
+
+                    let parent = $(this).closest(".user-list-row");
+
+                    if (parent == undefined)
+                        return;
+
+                    onBlockChanged(parent, $(this));
                 });
             });
 
             $(".removeButton").each(function () {
                 $(this).css("cursor", "pointer");
                 $(this).on("click", function () {
-                    onRemoveClicked($(this));
+                    if ($(this) == undefined)
+                        return;
+
+                    let parent = $(this).closest(".user-list-row");
+
+                    if (parent == undefined)
+                        return;
+
+                    onRemoveClicked(parent, $(this));
+                });
+            });
+
+            $(".promoteBtn").each(function () {
+                $(this).css("cursor", "pointer");
+                $(this).on("click", function () {
+                    if ($(this) == undefined)
+                        return;
+
+                    let parent = $(this).closest(".user-list-row");
+
+                    if (parent == undefined)
+                        return;
+
+                    onPromoteClicked(parent, $(this));
                 });
             });
         };
