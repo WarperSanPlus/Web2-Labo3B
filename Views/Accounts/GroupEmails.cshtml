@@ -4,9 +4,11 @@
 <div class="prevent-select">
     <div class="main">
 
-        <form >
+        <form action="@Url.Action("GroupEmails","Accounts")" method="post">
+            @Html.AntiForgeryToken();
             <div class="contourNoire">
                 <h2 class="couleurBleu"> Destinataire</h2>
+
                 <div>
 
                     <button class="BoutonPadding" id="SelectAll"> Tout selectionner</button>
@@ -22,7 +24,7 @@
                         {
                             var fullName = item.FirstName + " " + item.LastName;
                             <tr class="user-list-row">
-                                <td>    <input type="checkbox" name="SelectedUsers" value="@item.Id"/></td>
+                                <td>    <input type="checkbox" name="SelectedUsers" value="@item.Id" /></td>
                                 <td>
                                     @Helper.Image(item.Avatar, "UserSmallAvatar")
                                 </td>
@@ -36,42 +38,51 @@
                     </table>
                 </div>
             </div>
-                <div class="contourNoire mailSenderMargin">
-                    <h2 class="couleurBleu"> Courriel</h2>
-                    <div class="ToutEspace">
-                        <input type="text" id="Name" name="Name" placeholder="Sujet" class="contourNoire sujet  ">
+            <div class="contourNoire mailSenderMargin">
+                <h2 class="couleurBleu"> Courriel</h2>
+                <div class="ToutEspace">
+                    <input type="text" id="sujet" name="sujet" placeholder="Sujet" class="contourNoire sujet  ">
 
-                        <br />
-                        <input type="text" id="Name" name="Name" placeholder="Contenue" class="contourNoire champ">
-                    </div>
-                    </div>
+                    <br />
+                    <textarea type="text" id="contenue" name="contenue" placeholder="Contenue" class="contourNoire champ alignerHaut"> Bonjour [Nom]: TETRIS!! </textarea>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="EnvoyerMail" class="btn btn-default" />
+                </div>
+            </div>
         </form>
     </div>
 </div>
-<script defer>
-    function validateSelection() {
-        let oneSelected = false;
-        $("input[type='checkbox'][name='SelectedUsers']").each(function () {
-            if ($(this).prop('checked')) oneSelected = true;
-        });
-        if (!oneSelected)
-            $("#Error_SelectedUsers").css("display", "inline");
-        else
-            $("#Error_SelectedUsers").css("display", "none");
-        return oneSelected;
-    }
-    $("input[type='checkbox'][name='SelectedUsers']").change(function () { validateSelection(); });
-    $("form").submit(function () {
-        return validateSelection();
-    })
-    $("#SelectAll").click(function () {
-        $("input[type='checkbox'][name='SelectedUsers']").each(function () { $(this).prop('checked', true) });
-        validateSelection();
-        return false; // prevent form submit
-    })
-    $("#DeSelectAll").click(function () {
-        $("input[type='checkbox'][name='SelectedUsers']").each(function () { $(this).prop('checked', false) });
-        validateSelection();
-        return false; // prevent form submit
-    })
-</script>
+@section Scripts{
+    <script defer>
+        function validateSelection() {
+            let oneSelected = false;
+            $("input[type='checkbox'][name='SelectedUsers']").each(function () {
+                if ($(this).prop('checked')) oneSelected = true;
+            });
+            if (!oneSelected)
+                $("#Error_SelectedUsers").css("display", "inline");
+            else
+                $("#Error_SelectedUsers").css("display", "none");
+            return oneSelected;
+        }
+        $("input[type='checkbox'][name='SelectedUsers']").change(function () { validateSelection(); });
+        $("form").submit(function () {
+            return validateSelection();
+        })
+        $("#SelectAll").click(function () {
+            $("input[type='checkbox'][name='SelectedUsers']").each(function () { $(this).prop('checked', true) });
+            validateSelection();
+            return false; // prevent form submit
+        })
+        $("#DeSelectAll").click(function () {
+            $("input[type='checkbox'][name='SelectedUsers']").each(function () { $(this).prop('checked', false) });
+            validateSelection();
+            return false; // prevent form submit
+        })
+    </script>
+}

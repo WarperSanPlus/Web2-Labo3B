@@ -385,10 +385,24 @@ namespace MoviesDBManager.Controllers
 
         [ValidateAntiForgeryToken()]
         [HttpPost]
-        public ActionResult GroupEmails(List<int> Choix)
+        public ActionResult GroupEmails(List<int> SelectedUsers, string sujet,string contenue)
         {
-            Session["choix"] = Choix;
-            return Redirect("Choix");
+            IEnumerable<MoviesDBManager.Models.User> Table = DB.Users.ToList();
+            Session["choix"] = SelectedUsers;
+            ViewBag.reussi = false;
+            if (ModelState.IsValid)
+            {
+
+                foreach (int T in SelectedUsers)
+                {
+                    
+                    User utilisateur= Table.Where(x=> T=Id);
+                    SMTP.SendEmail(utilisateur.FirstName+" "+ utilisateur.LastName, utilisateur.Email, sujet, contenue);
+                }
+                
+            }
+
+            return View();
         }
         #endregion
 
