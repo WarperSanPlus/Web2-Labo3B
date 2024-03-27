@@ -385,10 +385,10 @@ namespace MoviesDBManager.Controllers
 
         [ValidateAntiForgeryToken()]
         [HttpPost]
-        public ActionResult GroupEmails(string nom)
+        public ActionResult GroupEmails(List<int> Choix)
         {
-
-            return View();
+            Session["choix"] = Choix;
+            return Redirect("Choix");
         }
         #endregion
 

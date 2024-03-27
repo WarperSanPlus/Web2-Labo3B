@@ -9,8 +9,8 @@
                 <h2 class="couleurBleu"> Destinataire</h2>
                 <div>
 
-                    <button class="BoutonPadding"> Tout selectionner</button>
-                    <button class="petitBoutonPadding"> Aucun</button>
+                    <button class="BoutonPadding" id="SelectAll"> Tout selectionner</button>
+                    <button class="petitBoutonPadding" id="DeSelectAll"> Aucun</button>
 
                 </div>
 
@@ -22,6 +22,7 @@
                         {
                             var fullName = item.FirstName + " " + item.LastName;
                             <tr class="user-list-row">
+                                <td>    <input type="checkbox" name="SelectedUsers" value="@item.Id"/></td>
                                 <td>
                                     @Helper.Image(item.Avatar, "UserSmallAvatar")
                                 </td>
@@ -47,3 +48,30 @@
         </form>
     </div>
 </div>
+<script defer>
+    function validateSelection() {
+        let oneSelected = false;
+        $("input[type='checkbox'][name='SelectedUsers']").each(function () {
+            if ($(this).prop('checked')) oneSelected = true;
+        });
+        if (!oneSelected)
+            $("#Error_SelectedUsers").css("display", "inline");
+        else
+            $("#Error_SelectedUsers").css("display", "none");
+        return oneSelected;
+    }
+    $("input[type='checkbox'][name='SelectedUsers']").change(function () { validateSelection(); });
+    $("form").submit(function () {
+        return validateSelection();
+    })
+    $("#SelectAll").click(function () {
+        $("input[type='checkbox'][name='SelectedUsers']").each(function () { $(this).prop('checked', true) });
+        validateSelection();
+        return false; // prevent form submit
+    })
+    $("#DeSelectAll").click(function () {
+        $("input[type='checkbox'][name='SelectedUsers']").each(function () { $(this).prop('checked', false) });
+        validateSelection();
+        return false; // prevent form submit
+    })
+</script>
