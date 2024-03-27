@@ -482,13 +482,23 @@ div1 {
 
 }
 
-    .user-list-row > td > * {
-        margin: 10px;
-    }
+.user-list-row > td > * {
+    margin: 10px;
+}
 
 .user-list-icon {
     width: 50px;
 }
+
+.removeButton {
+    color: red;
+}
+
+.removeButton:hover {
+    color: cyan;
+}
+
+/* MAIL */
 .contourNoire {
     border: 1px solid black; 
 }

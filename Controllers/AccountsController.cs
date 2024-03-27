@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using MoviesDBManager.Models;
@@ -406,7 +405,7 @@ namespace MoviesDBManager.Controllers
             if (!forceRefresh && !OnlineUsers.HasChanged && !DB.Users.HasChanged)
                 return null;
 
-            var user = OnlineUsers.GetSessionUser();
+            User user = OnlineUsers.GetSessionUser();
 
             if (user == null)
                 return null;
@@ -421,7 +420,7 @@ namespace MoviesDBManager.Controllers
         }
 
         [OnlineUsers.AdminAccess]
-        public ActionResult BlockUser(int id, bool blocked = false)
+        public JsonResult BlockUser(int id, bool blocked = false)
         {
             User onlineUser = OnlineUsers.GetSessionUser();
 
@@ -435,7 +434,7 @@ namespace MoviesDBManager.Controllers
             
             // Update data
             user.Blocked = blocked;
-            DB.Users.Update(user);
+            var success = DB.Users.Update(user);
 
             // Subject
             var subject = blocked ? "Blockage" : "Déblockage";
@@ -447,11 +446,11 @@ namespace MoviesDBManager.Controllers
 
             SMTP.SendEmail(user.GetFullName(), user.Email, subject, body);
 
-            return null;
+            return this.Json(success, JsonRequestBehavior.AllowGet);
         }
 
         [OnlineUsers.AdminAccess]
-        public ActionResult DeleteUser(int id)
+        public JsonResult DeleteUser(int id)
         {
             User onlineUser = OnlineUsers.GetSessionUser();
 
@@ -463,7 +462,7 @@ namespace MoviesDBManager.Controllers
             if (user == null) 
                 return null;
 
-            DB.Users.Delete(id);
+            var success = DB.Users.Delete(id);
 
             // Body
             var body = $@"Bonjour {user.GetFullName(true)},<br/><br/>Nous vous 
@@ -471,7 +470,30 @@ namespace MoviesDBManager.Controllers
 
             SMTP.SendEmail(user.GetFullName(), user.Email, "Suppression du compte", body);
 
-            return null;
+            return this.Json(success, JsonRequestBehavior.AllowGet);
+        }
+
+        [OnlineUsers.AdminAccess]
+        public JsonResult PromoteUser(int id)
+        {
+            // Get user
+            User user = DB.Users.Get(id);
+
+            if (user == null) 
+                return null;
+
+            // Get UserType
+            var userType = user.UserTypeId;
+            userType--;
+
+            if (userType <= 0)
+                userType = 3;
+
+            user.UserTypeId = userType;
+
+            var success = DB.Users.Update(user);
+
+            return this.Json(success, JsonRequestBehavior.AllowGet);
         }
 
         #endregion
