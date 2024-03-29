@@ -385,9 +385,8 @@ namespace MoviesDBManager.Controllers
         }
 
       //  [OnlineUsers.AdminAccess]
-        [ValidateAntiForgeryToken()]
         [HttpPost]
-       
+        [ValidateAntiForgeryToken()]
         public ActionResult GroupEmails(List<int> SelectedUsers, string sujet,string contenue)
         {
             IEnumerable<MoviesDBManager.Models.User> Table = DB.Users.ToList();

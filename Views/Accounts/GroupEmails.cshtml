@@ -3,7 +3,6 @@
 @{
     bool envoyer = ViewBag.Envoyer;
 }
-@Html.AntiForgeryToken();
 <h2> Envoi de courriel </h2>
 <div class="prevent-select">
     <div class="main">
@@ -17,10 +16,10 @@
                 {
                     <h2 class="couleurBleu"> Le Message a été envoyer</h2>
                 }
-                <div>
+                <div class="mail-btn-holder">
 
-                    <button class="BoutonPadding" id="SelectAll"> Tout selectionner</button>
-                    <button class="petitBoutonPadding" id="DeSelectAll"> Aucun</button>
+                    <button id="SelectAll"> Tout selectionner</button>
+                    <button id="DeSelectAll"> Aucun</button>
 
                 </div>
 
@@ -32,8 +31,8 @@
                         {
                             var fullName = item.FirstName + " " + item.LastName;
                             <tr class="user-list-row">
-                                <td>    <input type="checkbox" name="SelectedUsers" value="@item.Id" /></td>
-                                <td>
+                                <td width="10px">    <input type="checkbox" name="SelectedUsers" value="@item.Id" /></td>
+                                <td width="10px">
                                     @Helper.Image(item.Avatar, "UserSmallAvatar")
                                 </td>
                                 <td>
@@ -52,15 +51,21 @@
                     <input type="text" id="sujet" name="sujet" placeholder="Sujet" class="contourNoire sujet  ">
 
                     <br />
-                    <textarea type="text" id="contenue" name="contenue" placeholder="Contenue" class="contourNoire champ alignerHaut"> Bonjour [Nom]: TETRIS!! </textarea>
-                    <h2 class="couleurBleu"> Le [Nom] sera remplacer par le genre et le nom de famille de la personne</h2>
+                    <textarea type="text" id="contenue" name="contenue" placeholder="Contenue" class="contourNoire champ alignerHaut"> 
+Bonjour [Nom],
+
+
+
+Merci et bonne journée!
+                    </textarea>
+                    <p class="couleurBleu" style="font-size: 1em;"> Note: [Nom] sera remplacé par une désignation (par exemple: Monsieur) suivi du nom de famille du destinataire</p>
                 </div>
             </div>
 
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="EnvoyerMail" class="btn btn-default" />
+                    <input type="submit" value="Envoyer" class="btn btn-default" />
                   
                 </div>
             </div>
