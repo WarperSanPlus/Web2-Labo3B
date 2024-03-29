@@ -375,7 +375,6 @@ namespace MoviesDBManager.Controllers
         #region GroupEmail
 
         [OnlineUsers.AdminAccess]
-        [ValidateAntiForgeryToken()]
         [HttpGet]
         public ActionResult GroupEmails()
         {
@@ -384,8 +383,8 @@ namespace MoviesDBManager.Controllers
         }
 
         [OnlineUsers.AdminAccess]
-        [ValidateAntiForgeryToken()]
         [HttpPost]
+        [ValidateAntiForgeryToken()]
         public ActionResult GroupEmails(List<int> SelectedUsers, string sujet,string contenue)
         {
             IEnumerable<MoviesDBManager.Models.User> Table = DB.Users.ToList();
@@ -403,7 +402,7 @@ namespace MoviesDBManager.Controllers
                         {
 
                             string contenuModifie = contenue.Replace("[Nom]", $"{utilisateur.GetFullName(true)}");
-                            SMTP.SendEmail(utilisateur.FirstName + " " + utilisateur.LastName, utilisateur.Email, sujet, contenuModifie);
+                            SMTP.SendEmail(utilisateur.GetFullName(), utilisateur.Email, sujet, contenuModifie);
                         }
                     }
                 }
@@ -493,6 +492,29 @@ namespace MoviesDBManager.Controllers
             SMTP.SendEmail(user.GetFullName(), user.Email, "Suppression du compte", body);
 
             return null;
+        }
+
+        [OnlineUsers.AdminAccess]
+        public JsonResult PromoteUser(int id)
+        {
+            // Get user
+            User user = DB.Users.Get(id);
+
+            if (user == null)
+                return null;
+
+            // Get UserType
+            var userType = user.UserTypeId;
+            userType--;
+
+            if (userType <= 0)
+                userType = 3;
+
+            user.UserTypeId = userType;
+
+            var success = DB.Users.Update(user);
+
+            return this.Json(success, JsonRequestBehavior.AllowGet);
         }
 
         #endregion
