@@ -374,16 +374,17 @@ namespace MoviesDBManager.Controllers
 
         #region GroupEmail
 
-        [OnlineUsers.AdminAccess]
-        [ValidateAntiForgeryToken()]
+        //[OnlineUsers.AdminAccess]
+       // [ValidateAntiForgeryToken()]
         [HttpGet]
         public ActionResult GroupEmails()
         {
-
+            ViewBag.Envoyer = false;
             return View(DB.Users.ToList().OrderBy(c => c.FirstName));
+         
         }
 
-        [OnlineUsers.AdminAccess]
+      //  [OnlineUsers.AdminAccess]
         [ValidateAntiForgeryToken()]
         [HttpPost]
         public ActionResult GroupEmails(List<int> SelectedUsers, string sujet,string contenue)
@@ -404,6 +405,7 @@ namespace MoviesDBManager.Controllers
 
                             string contenuModifie = contenue.Replace("[Nom]", $"{utilisateur.GetFullName(true)}");
                             SMTP.SendEmail(utilisateur.FirstName + " " + utilisateur.LastName, utilisateur.Email, sujet, contenuModifie);
+                            ViewBag.Envoyer = true;
                         }
                     }
                 }

@@ -1,4 +1,8 @@
 @model IEnumerable<MoviesDBManager.Models.User>
+
+@{
+    bool envoyer = ViewBag.Envoyer;
+}
 @Html.AntiForgeryToken();
 <h2> Envoi de courriel </h2>
 <div class="prevent-select">
@@ -8,7 +12,10 @@
 
             <div class="contourNoire">
                 <h2 class="couleurBleu"> Destinataire</h2>
-
+                @if (envoyer)
+                {
+                    <h2 class="couleurBleu"> Le Message a été envoyer</h2>
+                }
                 <div>
 
                     <button class="BoutonPadding" id="SelectAll"> Tout selectionner</button>
@@ -45,6 +52,7 @@
 
                     <br />
                     <textarea type="text" id="contenue" name="contenue" placeholder="Contenue" class="contourNoire champ alignerHaut"> Bonjour [Nom]: TETRIS!! </textarea>
+                    <h2 class="couleurBleu"> Le [Nom] sera remplacer par le genre et le nom de famille de la personne</h2>
                 </div>
             </div>
 
@@ -52,6 +60,7 @@
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <input type="submit" value="EnvoyerMail" class="btn btn-default" />
+                  
                 </div>
             </div>
         </form>
