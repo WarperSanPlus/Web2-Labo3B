@@ -14,6 +14,7 @@
     @Scripts.Render("~/bundles/jqueryval")
 
     <script defer>
+        initTimeout(100);
         var unchangedPasswordCode = '@((string)Session["UnchangedPasswordCode"])';
         var showPassword = false;
         setUnchangedPassword();
