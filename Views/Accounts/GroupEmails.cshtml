@@ -1,11 +1,11 @@
 @model IEnumerable<MoviesDBManager.Models.User>
-
+@Html.AntiForgeryToken();
 <h2> Envoi de courriel </h2>
 <div class="prevent-select">
     <div class="main">
 
         <form action="@Url.Action("GroupEmails","Accounts")" method="post">
-            @Html.AntiForgeryToken();
+
             <div class="contourNoire">
                 <h2 class="couleurBleu"> Destinataire</h2>
 

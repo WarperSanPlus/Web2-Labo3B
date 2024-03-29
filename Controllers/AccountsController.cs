@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using MoviesDBManager.Models;
@@ -373,7 +374,8 @@ namespace MoviesDBManager.Controllers
 
         #region GroupEmail
 
-       // [OnlineUsers.AdminAccess]
+        [OnlineUsers.AdminAccess]
+        [ValidateAntiForgeryToken()]
         [HttpGet]
         public ActionResult GroupEmails()
         {
@@ -381,7 +383,7 @@ namespace MoviesDBManager.Controllers
             return View(DB.Users.ToList().OrderBy(c => c.FirstName));
         }
 
-
+        [OnlineUsers.AdminAccess]
         [ValidateAntiForgeryToken()]
         [HttpPost]
         public ActionResult GroupEmails(List<int> SelectedUsers, string sujet,string contenue)
@@ -391,17 +393,23 @@ namespace MoviesDBManager.Controllers
             ViewBag.reussi = false;
             if (ModelState.IsValid)
             {
-
-                foreach (int T in SelectedUsers)
+                if (contenue.Contains("[Nom]"))
                 {
-                    
-                    User utilisateur= Table.Where(x=> T=Id);
-                    SMTP.SendEmail(utilisateur.FirstName+" "+ utilisateur.LastName, utilisateur.Email, sujet, contenue);
+                    foreach (int T in SelectedUsers)    
+                    {
+
+                        var utilisateur = Table.FirstOrDefault(x => x.Id == T);
+                        if (utilisateur != null)
+                        {
+
+                            string contenuModifie = contenue.Replace("[Nom]", $"{utilisateur.GetFullName(true)}");
+                            SMTP.SendEmail(utilisateur.FirstName + " " + utilisateur.LastName, utilisateur.Email, sujet, contenuModifie);
+                        }
+                    }
                 }
-                
             }
 
-            return View();
+            return View(DB.Users.ToList().OrderBy(c => c.FirstName));
         }
         #endregion
 
@@ -419,7 +427,7 @@ namespace MoviesDBManager.Controllers
             if (!forceRefresh && !OnlineUsers.HasChanged && !DB.Users.HasChanged)
                 return null;
 
-            User user = OnlineUsers.GetSessionUser();
+            var user = OnlineUsers.GetSessionUser();
 
             if (user == null)
                 return null;
@@ -434,7 +442,7 @@ namespace MoviesDBManager.Controllers
         }
 
         [OnlineUsers.AdminAccess]
-        public JsonResult BlockUser(int id, bool blocked = false)
+        public ActionResult BlockUser(int id, bool blocked = false)
         {
             User onlineUser = OnlineUsers.GetSessionUser();
 
@@ -448,7 +456,7 @@ namespace MoviesDBManager.Controllers
             
             // Update data
             user.Blocked = blocked;
-            var success = DB.Users.Update(user);
+            DB.Users.Update(user);
 
             // Subject
             var subject = blocked ? "Blockage" : "Déblockage";
@@ -460,11 +468,11 @@ namespace MoviesDBManager.Controllers
 
             SMTP.SendEmail(user.GetFullName(), user.Email, subject, body);
 
-            return this.Json(success, JsonRequestBehavior.AllowGet);
+            return null;
         }
 
         [OnlineUsers.AdminAccess]
-        public JsonResult DeleteUser(int id)
+        public ActionResult DeleteUser(int id)
         {
             User onlineUser = OnlineUsers.GetSessionUser();
 
@@ -476,7 +484,7 @@ namespace MoviesDBManager.Controllers
             if (user == null) 
                 return null;
 
-            var success = DB.Users.Delete(id);
+            DB.Users.Delete(id);
 
             // Body
             var body = $@"Bonjour {user.GetFullName(true)},<br/><br/>Nous vous 
@@ -484,30 +492,7 @@ namespace MoviesDBManager.Controllers
 
             SMTP.SendEmail(user.GetFullName(), user.Email, "Suppression du compte", body);
 
-            return this.Json(success, JsonRequestBehavior.AllowGet);
-        }
-
-        [OnlineUsers.AdminAccess]
-        public JsonResult PromoteUser(int id)
-        {
-            // Get user
-            User user = DB.Users.Get(id);
-
-            if (user == null) 
-                return null;
-
-            // Get UserType
-            var userType = user.UserTypeId;
-            userType--;
-
-            if (userType <= 0)
-                userType = 3;
-
-            user.UserTypeId = userType;
-
-            var success = DB.Users.Update(user);
-
-            return this.Json(success, JsonRequestBehavior.AllowGet);
+            return null;
         }
 
         #endregion
