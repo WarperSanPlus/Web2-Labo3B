@@ -182,7 +182,6 @@
     <Content Include="Content\UI-Images\admin.png" />
     <Content Include="Content\UI-Images\Blocked.png" />
     <Content Include="Content\UI-Images\Masked.png" />
-    <Content Include="Content\UI-Images\neutral.png" />
     <Content Include="Content\UI-Images\OffLine.png" />
     <Content Include="Content\UI-Images\OnLine.png" />
     <Content Include="Content\UI-Images\power user.png" />
@@ -282,7 +281,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Scripts\NotificationsHandler.js" />
     <Content Include="Scripts\partialRefresh.js" />
     <Content Include="Scripts\selectionControl.js" />
     <Content Include="Scripts\selections.js" />
