@@ -265,6 +265,7 @@
     <Content Include="App_Data\UnverifiedEmails.json" />
     <Content Include="App_Data\Users.json" />
     <Content Include="PLan de site.pdf" />
+    <None Include="Properties\PublishProfiles\LaboB - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\MDB2023 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\MoviesRepository - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />

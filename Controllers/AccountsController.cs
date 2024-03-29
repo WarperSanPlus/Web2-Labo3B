@@ -374,7 +374,7 @@ namespace MoviesDBManager.Controllers
 
         #region GroupEmail
 
-        //[OnlineUsers.AdminAccess]
+        [OnlineUsers.AdminAccess]
        // [ValidateAntiForgeryToken()]
         [HttpGet]
         public ActionResult GroupEmails()
@@ -384,7 +384,7 @@ namespace MoviesDBManager.Controllers
          
         }
 
-      //  [OnlineUsers.AdminAccess]
+        [OnlineUsers.AdminAccess]
         [HttpPost]
         [ValidateAntiForgeryToken()]
         public ActionResult GroupEmails(List<int> SelectedUsers, string sujet,string contenue)
