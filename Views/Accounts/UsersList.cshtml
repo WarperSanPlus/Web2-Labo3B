@@ -17,7 +17,7 @@
 @section Scripts {
 
     <script defer>
-        initTimeout(100);
+        initTimeout(1000000000);
         let onBlockChanged = (parent, child) => {
 
             // State
@@ -107,6 +107,6 @@
             });
         };
 
-        let accounts = new PartialRefresh("@Url.Action("Accounts")", "AccountsContainer", 15, onLoad);
+        let accounts = new PartialRefresh("@Url.Action("Accounts")", "AccountsContainer", 5, onLoad);
     </script>
 }
